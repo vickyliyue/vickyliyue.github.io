@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>homework 2</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.center {
+			width: 1000px;
+			margin: 0 auto;
+		}
+
+		.text {
+			color: wheat;
+			background-color: lightgray;
+			text-align: center;
+			line-height: 50px;
+			font-weight: bold;
+			font-size: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<div class="nav">
+			<div class="center">
+				<header class="text">Homework 2 Part 2</header>
+                <ul>
+                    <li>
+                        <a href="hw2.html">back to homework 2</a>
+                    </li>
+                    <li>
+                        <a href="hw2-part1.html">go to homework 2 part 1</a>
+                    </li>
+                </ul> 
+				<div id="part-2" class="part">
+					<form id="calculator">
+						<label for="num1">First Number:</label> <input type="text" name="num1" id="num1"
+							size="20"><br><br>
+						<label for="num2">Second Number:</label> <input type="text" name="num2" id="num2"
+							size="20"><br><br>
+						<label for="num3">Thirdd Number:</label> <input type="text" name="num3" id="num3"
+							size="20"><br><br>
+						<input type="button" onclick="calculate()" value="SUBMIT">
+						<input type="reset" value="RESET">
+					</form>
+					<div id="result"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	function clearDisplay() {
+		document.getElementById('result').innerHTML = "";
+	}
+
+	function calculate() {
+		clearDisplay();
+		var formElement = document.getElementById('calculator');
+		const num1 = parseInt(formElement.elements["num1"].value);
+		const num2 = parseInt(formElement.elements["num2"].value);
+		const num3 = parseInt(formElement.elements["num3"].value);
+		console.log(num1+num2+num3);
+		var resultElement =  document.getElementById('result');
+		var resultString = "";
+	    if(num1 && num2 && num3) {
+		    const sum = num1 + num2 + num3;
+			resultString += "<p>"+" sum: " + sum +"</p><br>"
+			const average = sum / 3;
+			resultString += "<p>"+" average: " + average +"</p><br>"
+			const product = num1 * num2 * num3;
+			resultString += "<p>"+" product: " + product +"</p><br>"
+            const min = Math.min(num1,num2,num3);
+			resultString += "<p>"+" smallest: " + min +"</p><br>"
+			const max = Math.max(num1,num2,num3);
+			resultString += "<p>"+" largest: " + max +"</p>"
+			resultElement.innerHTML = resultString;
+		} else {
+			resultElement.innerHTML = "Error ! One of the input number is missing"; 
+		}
+		
+	}
+</script>
+
+</html>
