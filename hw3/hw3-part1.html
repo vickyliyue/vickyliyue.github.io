@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw3-part1</title>
+</head>
+
+<body>
+    <div id="part-1" class="part">
+        <form id="calculator">
+            <label for="num1">Homework Average:</label> <input type="number" name="num1" id="num1" size="20"><br><br>
+            <label for="num2">Mid-Term Exam Score:</label> <input type="number" name="num2" id="num2" size="20"><br><br>
+            <label for="num3">Final Exam Score:</label> <input type="number" name="num3" id="num3" size="20"><br><br>
+            <label for="num4">Participation:</label> <input type="number" name="num4" id="num4" size="20"><br><br>
+            <input type="button" onclick="calculate()" value="SUBMIT">
+            <input type="reset" value="RESET">
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        function clearDisplay() {
+            document.querySelector('#result').innerHTML = "";
+        }
+
+        function calculate() {
+            clearDisplay();
+            var formElement = document.querySelector('#calculator');
+            const num1 = parseInt(formElement.elements["num1"].value);
+            const num2 = parseInt(formElement.elements["num2"].value);
+            const num3 = parseInt(formElement.elements["num3"].value);
+            const num4 = parseInt(formElement.elements["num4"].value);
+            console.log(num1 + num2 + num3 + num4);
+            var resultElement = document.querySelector('#result');
+            var resultString = "";
+            if (!validNum(num1)) {
+                resultElement.innerHTML = " You put invalid Homework average score ";
+                return;
+            }
+            if (!validNum(num2)) {
+                resultElement.innerHTML = "You put invalid Mid-Term Exam Score";
+                return;
+            }
+            if (!validNum(num3)) {
+                resultElement.innerHTML = "You put invalid Final Exam Score";
+                return;
+            }
+            if (!validNum(num4)) {
+                resultElement.innerHTML = "You put invalid Participation score";
+                return;
+            }
+            const result = 0.5 * num1 + 0.2 * num2 + 0.2 * num3 + 0.1 * num4;
+            var grade;
+            if (result >= 90 && result <= 100) {
+                grade = 'A';
+            } else if (result >= 80 && result < 90) {
+                grade = 'B';
+            } else if (result >= 70 && result < 80) {
+                grade = 'C';
+            } else if (result >= 60 && result < 70) {
+                grade = 'D';
+            } else if (result >= 0 && result < 60) {
+                grade = 'F';
+            }
+            resultString += "<br><p>" + "Your final average: " + result + "</p><br>";
+            resultString += "<p>" + "Your  final letter grade: " + grade + "</p><br>";
+            if (grade == "D" || grade == "F") {
+                resultString += "<p>" + "Student must retake the course " + "</p><br>";
+            }
+            resultElement.innerHTML = resultString;
+
+        }
+
+        function validNum(num) {
+            if (num >= 0 && num <= 100)
+                return true;
+            else
+                return false;
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw3-part1</title>
+</head>
+
+<body>
+    <h2>Temperature calculator</h2>
+    <div id="part-1" class="part">
+        <form id="calculator">
+            <label for="temp">degree:</label> <input type="number" name="temp" id="temp" size="20"><br><br>
+            <label for="displayTemp">Result:</label> <textarea readonly name="displayTemp" id="displayTemp"></textarea>
+
+            <input type="button" id="ctof" value="C to F">
+            <input type="button" id="ftoc" value="F to C">
+            <input type="reset" value="RESET">
+        </form>
+    </div>
+    <script>
+        function handleClick(event) {
+            console.log(event.target.id);
+            var temp = parseInt(document.querySelector('#temp').value);
+            var result;
+            var resultStr = '';
+            if (event.target.id == 'ctof') {
+                result = parseInt(9 / 5 * temp + 32);
+                resultStr = temp + 'C' + ' is ' + result + 'F'
+            } else if (event.target.id == 'ftoc') {
+                result = parseInt(5 / 9 * (temp - 32));
+                resultStr = temp + 'F' + ' is ' + result + 'C'
+            }
+            document.querySelector('#displayTemp').value = resultStr;
+        }
+        document.querySelector('#ctof').addEventListener('click', handleClick);
+        document.querySelector('#ftoc').addEventListener('click', handleClick);
+        function clearDisplay() {
+            document.querySelector('#displayTemp').value = "";
+        }
+
+
+
+    </script>
+</body>
+
+</html>

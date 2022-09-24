@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw3-part2</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h2>Homework 3 - Part 2</h2>
+    <label for="name">Seller's Name</label> <input type="text" name="name" id="name" size="20"><br><br>
+    <div id="part-2" class="part">
+        <p>For each item type the quantity sold by the seller</p>
+        <form id="earning">
+            <label for="num1">Item 1:</label> <input type="number" name="num1" id="num1" size="20"><br><br>
+            <label for="num2">Item 2:</label> <input type="number" name="num2" id="num2" size="20"><br><br>
+            <label for="num3">Item 3:</label> <input type="number" name="num3" id="num3" size="20"><br><br>
+            <label for="num4">Item 4:</label> <input type="number" name="num4" id="num4" size="20"><br><br>
+
+            <input type="button" onclick="calculate()" value="SUBMIT"><br />
+            <input type="reset" onclick="clearDisplay()" value="Clear Form">
+        </form>
+        <div id="error"></div>
+        <table id="displayTable">
+            <thead>
+                <tr>
+                    <td>Item#</td>
+                    <td>Price</td>
+                    <td>Qty Sold</td>
+                    <td>Total$</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>$20.99</td>
+                    <td><input readonly name="num1" type="number"></td>
+                    <td><input readonly name="total1" type="number"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>$12.75</td>
+                    <td><input readonly name="num2" type="number"></td>
+                    <td><input readonly name="total2" type="number"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>$9.95</td>
+                    <td><input readonly name="num3" type="number"></td>
+                    <td><input readonly name="total3" type="number"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>$35.89</td>
+                    <td><input readonly name="num4" type="number"></td>
+                    <td><input readonly name="total4" type="number"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total Amount Sold</td>
+                    <td><input readonly id="summary" type="number"></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total Weekly Earning</td>
+                    <td><input readonly id="salary" type="number"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function clearDisplay() {
+            document.querySelector('#error').innerHTML = "";
+        }
+
+        function calculate() {
+            clearDisplay();
+            var formElement = document.querySelector('#earning');
+            const num1 = parseInt(formElement.elements["num1"].value);
+            const num2 = parseInt(formElement.elements["num2"].value);
+            const num3 = parseInt(formElement.elements["num3"].value);
+            const num4 = parseInt(formElement.elements["num4"].value);
+            var errorElement = document.querySelector('#error');
+            if (!validNum(num1)) {
+                errorElement.innerHTML = " You put invalid number for item 1 ";
+                return;
+            }
+            if (!validNum(num2)) {
+                errorElement.innerHTML = " You put invalid number for item 2 ";
+                return;
+            }
+            if (!validNum(num3)) {
+                errorElement.innerHTML = " You put invalid number for item 3 ";
+                return;
+            }
+            if (!validNum(num4)) {
+                errorElement.innerHTML = " You put invalid number for item 3 ";
+                return;
+            }
+
+            var tableElement = document.querySelector('#displayTable');
+            tableElement.querySelector('input[name="num1"]').value = num1;
+            var total1 = parseFloat(num1 * 20.99).toFixed(2);
+            tableElement.querySelector('input[name="total1"]').value = total1;
+
+            tableElement.querySelector('input[name="num2"]').value = num2;
+            var total2 = parseFloat(num2 * 12.75).toFixed(2);
+            tableElement.querySelector('input[name="total2"]').value = total2;
+
+            tableElement.querySelector('input[name="num3"]').value = num3;
+            var total3 = parseFloat(num3 * 9.95).toFixed(2);
+            tableElement.querySelector('input[name="total3"]').value = total3;
+
+            tableElement.querySelector('input[name="num4"]').value = num4;
+            var total4 = parseFloat(num4 * 35.89).toFixed(2);
+            tableElement.querySelector('input[name="total4"]').value = total4;
+
+            var summary = parseFloat(total1) + parseFloat(total2) + parseFloat(total3) + parseFloat(total4);
+            console.log(summary);
+
+            tableElement.querySelector('#summary').value = summary.toFixed(2);
+
+            tableElement.querySelector('#salary').value = parseFloat(summary * 0.09 + 250).toFixed(2);
+
+        }
+
+        function validNum(num) {
+            if (num >= 0)
+                return true;
+            else
+                return false;
+        }
+
+    </script>
+</body>
+
+</html>
