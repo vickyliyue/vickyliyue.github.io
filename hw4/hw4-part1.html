@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Please click button to get the answear</h1>
+   <div id="box">
+    
+    <div>
+        <button>The result of 5 * 9 * 13 * 17 * 21 * 25 is</button>
+    <h2></h2>
+    </div>
+    <div>
+    <button>The result of 5 + 9 + 13 + 17 + 21 + 25 is</button>
+    <h2></h2>
+   </div>
+   <div>
+    <button>The result of 3 * 6 * 9 * 12 * 15 * 18 is</button>
+<h2></h2>
+</div>
+<div>
+<button>The result of 3 + 6 + 9 + 12 + 15 + 18 is</button>
+<h2></h2>
+</div>
+   </div>
+   <li>
+    <a href="hw4.html">back to homework 4</a>
+</li>
+    <script>
+        
+       for(var i=5,pro=1,sum=0;i<=25;i+=4){
+        pro *= i;
+        sum+= i;
+        console.log(i);
+       }
+       const button1=document.querySelector('#box>div:first-child>button')
+       //console.log(button1)
+       button1.onclick=function(){
+        const h2f=document.querySelector('#box>div:first-child>h2')
+        h2f.innerHTML= pro.toLocaleString();
+       }
+       const button2=document.querySelector('#box>div:nth-child(2)>button')
+       //console.log(button2)
+       button2.onclick=function(){
+        const h2s=document.querySelector('#box>div:nth-child(2)>h2')
+        h2s.innerHTML= sum.toLocaleString();
+       }
+       
+       var j=3,pro1=1,sum1=0;
+       while(j<=18){
+        console.log(j)
+        pro1*=j;
+        sum1+=j;
+         j+=3;
+       }
+       const button3=document.querySelector('#box>div:nth-child(3)>button')
+       console.log(button3)
+       button3.onclick=function(){
+        const h2t=document.querySelector('#box>div:nth-child(3)>h2')
+        h2t.innerHTML= pro1.toLocaleString();
+       }
+       const button4=document.querySelector('#box>div:nth-child(4)>button')
+       console.log(button4)
+       button4.onclick=function(){
+        const h2l=document.querySelector('#box>div:nth-child(4)>h2')
+        h2l.innerHTML= sum1.toLocaleString();
+       }
+    </script>
+</body>
+</html>

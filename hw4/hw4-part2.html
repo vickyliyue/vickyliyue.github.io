@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 2px black dotted;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: brown;
+            color: white;
+        }
+
+        td {
+            border: 1px black dotted;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: orange;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: yellow;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="tables"> </div>
+    <ul>
+        <li>
+            <a href="hw4.html">back to homework 4</a>
+        </li>
+        <li>
+            <a href="hw4-part1.html">go to homework 4 part 1</a>
+        </li>
+    </ul>
+    <script>
+        var calculateInterest = function (total, year, rate) {
+            let interest = rate + 1;
+            return parseFloat((total * Math.pow(interest, year)).toFixed(2))
+        }
+        const data = [
+            { year: 1, total: 1000.00, rate: 0.05 },
+            { year: 2, total: 1000.00, rate: 0.06 },
+            { year: 3, total: 1000.00, rate: 0.07 }
+        ]
+        for (var index = 0; index < 3; index++) {
+            var str = '';
+            const { year, total, rate } = data[index];
+            for (var i = 1; i <= 5; i++) {
+                str += `
+        <tr>
+        <td>${i}</td>
+        <td>${calculateInterest(total, i, rate)}</td>
+        <td>${rate}</td>
+        </tr>
+        `
+            }
+            var html = `<table>
+                <thead>
+                    <tr>
+                        <td>Year</td>
+                        <td>Amount on deposit</td>
+                        <td>Interest Rate</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${str}
+                </tbody>
+            </table><br/><br/>`
+            const container = $('#tables');
+            container.append(html);
+        }
+
+       
+
+    </script>
+</body>
+
+</html>
