@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework5-part3</title>
+    <style>
+        header {
+            font-size: large;
+        }
+
+        form input:first-child {
+            width: 60%;
+        }
+
+        #output {
+            display: none
+        }
+
+        #output.show {
+            display: block
+        }
+
+        #output table {
+            border-collapse: collapse;
+        }
+
+        #output table thead td {
+            border: 1px solid black;
+        }
+
+        #output table tbody td {
+            border: 1px dashed black;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Homework5-part3</header>
+    <form>
+        <input id="search-states" type="text" placeholder="the FULL NAME or ABBREVIATION of the state">
+        <br>
+        <br>
+        <button type="button" value="commit" id="commit">submit</button>
+        <input type="reset" value="clear">
+    </form>
+    <br>
+    <br>
+    <div id="output">
+        <ul id="outcome">
+        </ul>
+    </div>
+    <br>
+    <br>
+    <hr>
+
+
+    <table>
+        <ul>
+            <li>
+                <a href="hw5.html">back to homework 5- Arrays</a>
+            </li>
+            <li>
+                <a href="hw5-part1.html">go to homework 5 part 1</a>
+            </li>
+            <li>
+                <a href="hw5-part2.html">go to homework 5 part 2</a>
+            </li>
+            <li>
+                <a href="../index.html">back to main page</a>
+            </li>
+        </ul>
+    </table>
+    <script>
+        const names = ['State Abbr', 'State Name', 'Capital', 'Population'];
+        const data = [
+            { Abb: 'AL', Name: 'Alabama', Capital: 'Montgomery', Population: '4,858,979' },
+            { Abb: 'AK', Name: 'Alaska', Capital: 'Juneau', Population: '738,432' },
+            { Abb: 'AZ', Name: 'Arizona', Capital: 'Phoenix', Population: '6,828,065	' },
+            { Abb: 'AR', Name: 'Arkansas', Capital: 'Little Rock', Population: '2,978,204' },
+            { Abb: 'CA', Name: 'California', Capital: 'Sacramento', Population: '39,144,818' },
+            { Abb: 'CO', Name: 'Colorado', Capital: 'Denver', Population: '5,758,736' },
+        ]
+        //search-states
+        function search(stateValue) {
+            for (var i = 0; i < data.length; i++) {
+                var state = data[i];
+                if (stateValue.toUpperCase() === state.Abb.toUpperCase() || stateValue.toUpperCase() === state.Name.toUpperCase()) {
+                    return state;
+                }
+            }
+            return null;
+        }
+
+        const commit = document.querySelector('form #commit');
+        commit.onclick = function () {
+            outcome.innerHTML = '';
+            var stateValue = document.querySelector('#search-states').value;
+            if (!stateValue) {
+                return false;
+            }
+            var result = search(stateValue);
+            if (result) {
+                const { Abb, Name, Capital, Population } = result
+                var x =   `<li>State abbr = ${Abb}</li>
+        <li>State Name = ${Name}</li>
+        <li>Capital = ${Capital}</li>
+        <li>Population = ${Population}</li>`;
+                const outcome = document.getElementById('outcome')
+                outcome.innerHTML = x+'';
+                const output = document.getElementById('output')
+                output.classList.add('show')
+            } else {
+                const outcome = document.getElementById('outcome')
+                outcome.innerHTML = '"Sorry, we do not have information about this state! We only have information about.AL.AK.AZ.AR.CA.COs"'
+                const output = document.getElementById('output')
+                output.classList.add('show')
+            }
+
+        }
+    </script>
+</body>
+
+</html>

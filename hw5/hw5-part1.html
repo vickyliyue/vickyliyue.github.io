@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework5-part1</title>
+    <style>
+        header {
+            font-size: 32px;
+        }
+
+        #output {
+            border: black 2px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Homework5-part1</header>
+    <br>
+    <br>
+    <br>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" placeholder="input your full name"></td>
+        </tr>
+        <tr>
+            <td> Age:</td>
+            <td><input type="radio" name="age" value="0"> less than 21
+                <input type="radio" name="age" value="21"> between 21 and 50
+                <input type="radio" name="age" value="50"> older than 50
+            </td>
+        </tr>
+        <tr>
+            <td> Which browsers you use: </td>
+            <td>
+                <input type="checkbox" value="Firefox" name="browsers" class="checkbox">Firefox
+                <input type="checkbox" value="Edge" name="browsers" class="checkbox">Edge
+                <input type="checkbox" value="Chrome" name="browsers" class="checkbox">Chrome
+                <input type="checkbox" value="Safari" name="browsers" class="checkbox">Safari
+            </td>
+        </tr>
+        <tr>
+            <td> Which type of movie you prefer:</td>
+            <td>
+                <select id="movies" name="movies">
+                    <option disabled selected value> -- select an option -- </option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="submit" vlue="submit" id="submit"></td>
+        </tr>
+        <tr>
+            <td><input type="reset" value="clear"></td>
+        </tr>
+    </table>
+    <div id="output">
+
+    </div>
+    <ul>
+        <li>
+            <a href="hw5.html">back to homework 5- Arrays</a>
+        </li>
+        <li>
+            <a href="hw5-part2.html">go to homework 5 part 2</a>
+        </li>
+        <li>
+            <a href="hw5-part3.html">go to homework 5 part 3</a>
+        </li>
+        <li>
+            <a href="../index.html">back to main page</a>
+        </li>
+    </ul>
+    <script>
+        function check(output, value) {
+            console.log(value);
+            if (!value) {
+                output.innerHTML = 'error message'
+                return false;
+            }
+            return true;
+        }
+
+        const output = document.getElementById('output')
+        //console.log(output)
+        const submit = document.getElementById('submit')
+        submit.onclick = function () {
+            output.innerHTML = "";
+            const name = document.querySelectorAll('table tr td:nth-child(2) input')[0];
+            if (!check(output, name.value)) {
+                return;
+            }
+            const age = document.querySelectorAll('table tr td:nth-child(2)')[1];
+            const ageValue = age.querySelector('input[name="age"]:checked');
+            //console.log("ageValue: "+ ageValue)
+
+            if (!check(output, ageValue)) {
+                return;
+            }
+
+            const checkboxTd = document.querySelectorAll('table tr td:nth-child(2)')[2];
+
+            const checkboxlist = checkboxTd.querySelectorAll('input[name="browsers"]');
+            console.log("checkboxlist: "+ checkboxlist);
+
+            var flag = false;
+            checkboxlist.forEach(item => {
+                console.log("item: "+ item.checked);
+                if (item.checked) {
+                    flag = true;
+                }
+            });
+
+            if (!flag) {
+                console.log("all false");
+                return;
+            }
+
+            const select = document.getElementById("movies");
+        
+            if (!check(output, select.options[select.selectedIndex].value)) {
+                return;
+            }
+
+            //TODO
+            console.log("good !!!")
+            output.innerHTML = "Thanks, your data was submitted!"
+
+        };
+
+    </script>
+</body>
+
+</html>
