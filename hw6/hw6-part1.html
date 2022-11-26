@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework6-part1</title>
+    <style>
+
+    </style>
+
+</head>
+
+<body>
+    <table>
+        <tbody>
+            <tr>
+                <td>Enter a number</td>
+                <td><input id="number" type="text"></td>
+            </tr>
+            <tr>
+                <td><button id="submit">submit</button></td>
+                <td><button id="reset" type="reset">clear</button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="output">
+
+    </div>
+    <br><br><br>
+
+    <ul>
+        <li>
+            <a href="hw6.html">back to homework 6- Objects</a>
+        </li>
+        <li>
+            <a href="hw6-part2.html">go to homework 6 part 2</a>
+        </li>
+        <li>
+            <a href="hw6-part3.html">go to homework 6 part 3</a>
+        </li>
+        <li>
+            <a href="../index.html">back to main page</a>
+        </li>
+    </ul>
+    <script>
+        function countDecimals(value) {
+            if ((value % 1) != 0)
+                return value.toString().split(".")[1].length;
+            return 0;
+        }
+
+        function check(output, value) {
+            console.log(value);
+            var number = countDecimals(value)
+            if (number != 4) {
+                output.innerHTML = 'You need to type a number with at least 4 decimals, please try again'
+                return false;
+            }
+            return true;
+        }
+        const output = document.getElementById('output')
+        //console.log(output)
+        const submit = document.getElementById('submit')
+        const reset = document.getElementById('reset')
+        
+        submit.onclick = function () {
+            output.innerHTML = '';
+            var value = document.querySelector('#number').value;
+            var valueFloat = parseFloat(value);
+            var resultString='';
+            if (check(output, valueFloat)) {
+                resultString +="You typed number " +valueFloat
+                resultString += "<p>" + "Rounded to the nearest integer = " + Math.round(valueFloat) + "</p>";
+                resultString += "<p>" + "Square root rounded to integer = " + Math.round(Math.sqrt(valueFloat)) + "</p>";
+                resultString += "<p>" + "Rounded to the nearest 10th position = " + valueFloat.toFixed(1) + "</p>";
+                resultString += "<p>" + "Rounded to the nearest 100th position = " + valueFloat.toFixed(2) + "</p>";
+                resultString += "<p>" + "Rounded to the nearest 1000th position = " + valueFloat.toFixed(3)+ "</p>";
+                output.innerHTML = resultString;
+            }
+        }
+        reset.onclick=function(){
+            document.getElementById('number').value = '';
+            output.innerHTML=''
+        }
+    </script>
+</body>
+
+</html>

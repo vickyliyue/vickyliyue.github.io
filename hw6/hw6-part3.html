@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework6-part3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+</head>
+<script>
+    $(function () {
+        console.log('start');
+        $('input[name="phone-number"]').mask('(000) 000-0000');
+        const submit = document.getElementById('submit');
+        submit.onclick = function () {
+            var phoneValue = document.querySelector('#phone-number').value;
+            var USNumber = phoneValue.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+             var areaCode= USNumber[1] 
+             var part2 = USNumber[2] 
+             var part3 = USNumber[3];
+             console.log(areaCode+part2+part3);
+             document.querySelector('#areaCode').value = areaCode;
+             document.querySelector('#part2').value = part2;
+             document.querySelector('#part3').value = part3;
+        }
+    });
+</script>
+
+<body>
+    <form action="">
+        <label>Phone Number Example
+            <input type="text" name="phone-number" id="phone-number" />
+        </label>
+        <label for="">area code</label><input id="areaCode" type="text" readonly><br>
+        <label for="">the first 3 digits of the phone number</label><input type="text" id="part2" readonly><br>
+        <label for="">the last 4 digits of the phone number</label><input type="text" id="part3" readonly><br>
+
+        <input type="button" id="submit" value="SUBMIT">
+        <input type="reset" value="RESET">
+    </form>
+    <div id="error">
+
+    </div>
+    <ul>
+        <li>
+            <a href="hw6.html">back to homework 6- Objects</a>
+        </li>
+        <li>
+            <a href="hw6-part2.html">go to homework 6 part 2</a>
+        </li>
+        <li>
+            <a href="hw6-part1.html">go to homework 6 part 1</a>
+        </li>
+        <li>
+            <a href="../index.html">back to main page</a>
+        </li>
+    </ul>
+
+</body>
+
+</html>

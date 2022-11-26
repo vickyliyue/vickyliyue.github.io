@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework6-part2</title>
+</head>
+
+<body>
+    <div class="part">
+        <form>
+            <label for="long-content">Text:</label> <textarea name="long-content" id="long-content"></textarea><br>
+
+            <label for="short-content">Search word:</label> <input type="text" name="short-content" id="short-content" maxlength="1"/>
+     
+            <input type="button"  id="submit" value="SUBMIT">
+            <input type="reset" value="RESET">
+        </form>
+        <div id="output"></div>
+    </div>
+    <ul>
+        <li>
+            <a href="hw6.html">back to homework 6- Objects</a>
+        </li>
+        <li>
+            <a href="hw6-part1.html">go to homework 6 part 1</a>
+        </li>
+        <li>
+            <a href="hw6-part3.html">go to homework 6 part 3</a>
+        </li>
+        <li>
+            <a href="../index.html">back to main page</a>
+        </li>
+    </ul>
+    <script>
+        function count(str, letter) {
+            let count = 0;
+            // looping through the items
+            for (let i = 0; i < str.length; i++) {
+                if (str.charAt(i) == letter) {
+                    count += 1;
+                }
+            }
+            return count;
+        }
+        const output = document.getElementById('output')
+        //console.log(output)
+        const submit = document.getElementById('submit')
+
+        submit.onclick = function () {
+            output.innerHTML = '';
+            var longValue = document.querySelector('#long-content').value;
+            var shortValue = document.querySelector('#short-content').value;
+            var result = count(longValue, shortValue);
+            console.log("result: "+result);
+            if (result > 0) {
+                output.innerHTML = "The letter shows up in textarea for " + result + " times."
+            } else {
+                output.innerHTML="Search character " + shortValue + " not found in the content you typed";
+            }
+        }
+    </script>
+</body>
+</html>
