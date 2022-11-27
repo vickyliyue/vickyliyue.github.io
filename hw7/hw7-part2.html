@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework7-part1</title>
+    <script src="./js.cookie.min.js"></script>
+</head>
+
+<body>
+
+    <label>Name:
+        <input type="text" name="name" id="name" />
+    </label>
+    <label>Username:
+        <input type="text" name="username" id="username" />
+    </label>
+    <button id="submit">submit</button>
+
+
+    <script>
+        if (Cookies.get('name')) {
+            console.log('Cookies.get');
+            document.getElementById("name").value = Cookies.get('name');
+        }
+        if (Cookies.get('username')) {
+            document.getElementById("username").value = Cookies.get('username');
+        }
+        document.getElementById("submit").onclick = function () {
+            console.log('Cookies.set');
+            Cookies.set('name', document.getElementById("name").value, { path: '' })
+            Cookies.set('username', document.getElementById("username").value, { path: '' })
+        }
+        window.onbeforeunload = function () {
+            Cookies.remove('name', { path: '' })
+            Cookies.remove('username', { path: '' })
+        };
+    </script>
+</body>
+
+</html>

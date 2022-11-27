@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework7-part1</title>
+    <style>
+        
+        .underline {
+            text-decoration: underline;
+        }
+        .bold {
+            font-weight:bold;
+        }
+        .italic {
+            font-style: italic;
+        }
+      
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            console.log('start');
+            $('input[name="color"]').click(function(e){
+                console.log(e.target.value);
+                $('#main').css('background-color',e.target.value);
+            });
+            $('input[name="textStyle"]').click(function(e){
+                console.log(e.target.value);
+
+                if($(e.target).is(':checked')) {
+                    $('#main').addClass(e.target.value);
+                } else {
+                    $('#main').removeClass(e.target.value);
+                }
+            });
+            $('select[name="font-size"]').change(function(e){
+                console.log(e.target.value);
+                var value = $(e.target).find(":selected").val();
+                console.log(value);
+                $('#main').css('font-size',value);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <p>I found a love, for me
+            Darling, just dive right in and follow my lead
+            Well, I found a girl, beautiful and sweet
+            Oh, I never knew you were the someone waiting for me</p>
+        <p>'Cause we were just kids when we fell in love
+            Not knowing what it was
+            I will not give you up this time
+            But darling, just kiss me slow
+            Your heart is all I own
+            And in your eyes, you're holding mine</p>
+        <p>Baby, I'm dancing in the dark
+            With you between my arms
+            Barefoot on the grass
+            Listening to our favourite song
+            When you said you looked a mess
+            I whispered underneath my breath
+            But you heard it
+            Darling, you look perfect tonight</p>
+    </div>
+    <div class="part">
+        <form>
+            <label for="color" >background-color:</label>
+            <input type="radio" name="color" value="red" > red
+            <input type="radio" name="color" value="blue" > blue
+            <input type="radio" name="color" value="yellow" > yellow
+            <br>
+
+            <label for="textStyle" >Text-style:</label>
+            <input type="checkbox" value="underline" name="textStyle" class="underline">underline
+            <input type="checkbox" value="bold" name="textStyle" class="bold">bold
+            <input type="checkbox" value="italic" name="textStyle" class="italic">italic
+            <br>
+
+
+            <label for="font-size" >font-size:</label>
+            <select name="font-size">
+                <option disabled selected value> -- select an option -- </option>
+                <option value="1.2em" >em</option>
+                <option value="1.1rem" >rem</option>
+                <option value="80%"  >percentage</option>
+            </select>
+        </form>
+    </div>
+    <ul>
+        <li>
+            <a href="hw7.html">back to homework 6- Objects</a>
+        </li>
+        <li>
+            <a href="hw7-part2.html">go to homework 6 part 2</a>
+        </li>
+        <li>
+            <a href="../index.html">back to main page</a>
+        </li>
+    </ul>
+</body>
+
+</html>
