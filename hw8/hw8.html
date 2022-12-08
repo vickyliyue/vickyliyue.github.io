@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<style>
+  
+table,th,td {
+  border : 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 5px;
+}
+</style>
+<br>
+<h2>Homework 8 - AJAX Application</h2>
+<button type="button" onclick="loadDoc()">Get CD collection</button>
+<br><br>
+<table id="demo"></table>
+
+<script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    myFunction(this);
+  }
+  xhttp.open("GET", "cd_catalog.xml");
+  xhttp.send();
+}
+function myFunction(xml) {
+  const xmlDoc = xml.responseXML;
+  const x = xmlDoc.getElementsByTagName("CD");
+  let table="<tr><th>Artist</th><th>Title</th></tr>";
+  for (let i = 0; i <x.length; i++) { 
+    table += "<tr><td>" +
+    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+    "</td><td>" +
+    x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+    "</td></tr>";
+  }
+  document.getElementById("demo").innerHTML = table;
+}
+</script>
+<h2>Explanation of AJAX"</h2>
+<p>There are three main steps</p>
+<p>1. After clicking the button, the onclick="loadDoc()" got trigger which send XMLHttpRequest request </p>
+<p>2. The "get" http request send to the server to fetch cd_catalog.xml. then send back the response and trigger xhttp.onload</p>
+<p>3 xhttp.onload func will trigger myFunction which parse the xml and set the CD data to html</p>
+
+<h2>Cat API</h2>
+<p>What type of response file you get? Answer:JSON</p>
+<p>Do you need any type of key to access and use the API?
+  Answer:No
+</p>
+<p>Do the companies need to pay any fee to use the API and if they need, how is that charged? Answer:No</p>
+<p>Document link: https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t</p>
+</br><div class="back">
+  <a href="index.html">back to main page</a>
+</div>
+
+</body>
+</html>
